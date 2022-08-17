@@ -25,26 +25,26 @@ def create_empty_node():
 
 @pytest.fixture
 def dbl_ll_empty():
-    from dbl_linked_list import DblLinkedList
-    new_dll = DblLinkedList()
+    from dbl_linked_list import DblLinked_List
+    new_dll = DblLinked_List()
     return new_dll
 
 @pytest.fixture
 def dbl_ll_one_value():
-    from dbl_linked_list import DblLinkedList
-    new_dll = DblLinkedList(TEST_ITER[-1])
+    from dbl_linked_list import DblLinked_List
+    new_dll = DblLinked_List(TEST_ITER[-1])
     return new_dll
 
 @pytest.fixture
 def dbl_ll():
-    from dbl_linked_list import DblLinkedList
-    new_dll = DblLinkedList(TEST_ITER)
+    from dbl_linked_list import DblLinked_List
+    new_dll = DblLinked_List(TEST_ITER)
     return new_dll
 
 @pytest.fixture
 def dbl_ll_2():
-    from dbl_linked_list import DblLinkedList
-    new_dll = DblLinkedList(TEST_ITER_2)
+    from dbl_linked_list import DblLinked_List
+    new_dll = DblLinked_List(TEST_ITER_2)
     return new_dll
 
 
@@ -67,7 +67,7 @@ def test_create_node_with_val_nxt_prev():
 
 
 def test_create_empty_dbl_linked_list(dbl_ll_empty):
-    """Test creation of empty DblLinkedList."""
+    """Test creation of empty DblLinked_List."""
     assert dbl_ll_empty.head is None
     assert dbl_ll_empty.tail is None
 

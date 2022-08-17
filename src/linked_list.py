@@ -1,103 +1,99 @@
+"""Python implementation of a linked list."""
+
+import pytest
 
 
-class Node(object):
-    """Create Node objects for use in a Linked List data structure.
+@pytest.fixture
+def new_dll():
+    from dll import DbLinked_List
+    dll = DbLinked_List(5)
+    dll.push(4).push(3)
+    return dll
 
-    Attributes:
-    value:      A value stored in the Node.
-    nxt:        Pointer to the next Node, used in a Linked List or Stack
-                data structure.
-    """
-    def __init__(self, value=None, nxt=None):
-        """Initialize a Node type object."""
+
+class Node():
+    """Instantiate a Node."""
+
+    def __init__(self, value=None, next=None):
+        """Instantiate a node with value and next params."""
         self.value = value
-        self.nxt = nxt
+        self.next = next
 
 
-class Linked_List(object):
-    """Create a Linked List Data Structure.
+class Linked_List():
+    """Instantiate a Linked List."""
 
-    Attributes:
-    head:       Always the most recent item added to a Linked List.
-    _size:      The length of the Linked List or number of Nodes stored
-                in the list.
-
-    push(value):    Given a value, add a new Node object to a Linked List.
-
-    size():         Return _size of the Linked List.
-
-    pop():          Pop the head Node off the list, return the value.
-
-    search():       Given a Node value to search by, return the Node from the
-                    Linked List containing that value.  Else, return None.
-
-    remove():       Given a Node, remove that Node from the Linked List.  Else,
-                    raise a ValueError.
-
-    display():      Return a string of all Nodes in the Linked List,
-                    formatted as a Tuple.
-    """
-    def __init__(self, maybe_an_iterable=None):
-        """Intialize a Linked List Object."""
+    def __init__(self, iterable=None):
+        """Instantiate an empty Linked list."""
         self.head = None
-        self._size = 0
-        if maybe_an_iterable:
-            try:
-                for value in maybe_an_iterable:
-                    self.push(value)
-            except TypeError:
-                self.push(maybe_an_iterable)
 
-    def push(self, value):
-        """Add a node."""
-        self.head = Node(value, self.head)
-        self._size += 1
+        if iterable and hasattr(iterable, "__iter__"):
+            for item in iterable:
+                self.push(item)
+        elif iterable:
+            raise TypeError
 
-    def size(self):
-        """Return the length of the Linked_List."""
-        return self._size
+    def push(self, val):
+        """Push a new node as the head of the linked list."""
+        new_node = Node(val, self.head)
+        self.head = new_node
 
     def pop(self):
-        """Pop the first value off the head of LL and return it."""
-        if self.head is None:
-            raise IndexError("Cannot pop from an empty Linked List.")
-        val = self.head.value
-        self.head = self.head.nxt
-        self._size -= 1
-        return val
+        """Pop first value off linked list and return value."""
+        # if self.head is None:
+        if self.head is not None:
+            pop_head = self.head.value
+            self.head = self.head.next
+            return pop_head
+        else:
+            raise IndexError('cannot pop from empty list')
 
-    def search(self, query):
-        """Return the node that contains the value."""
-        match = [node for node in self._iterate_from(self.head) if node.value == query]
-        return match[0] if match else None
+    def search(self, val):
+        """Search for the value in a list of nodes."""
+        curr_node = self.head
+        while curr_node is not None:
+            if curr_node.value == val:
+                return curr_node
+            else:
+                curr_node = curr_node.next
+        return None
 
-    def remove(self, r_node):
-        """Remove the given node from the LL."""
-        for node in self._iterate_from(self.head):
-            if r_node.value == node.value:
-                if self.head.value == r_node.value:
-                    self.pop()
-                    return "Succesfully removed Node with value: \
-                    {0}. New head set to {1}".format(r_node.value, self.head.value)
-                node.nxt = node.nxt.nxt
-                self._size -= 1
-                return "Succesfully removed Node with value: {}".format(r_node.value)
-        raise ValueError("ERROR: That node is not in this linked list.")
+    def remove(self, val):
+        """Search for node with matching value and removes it."""
+        if self.head.value == val:
+            self.head = self.head.next
+            return
+        curr_node = self.head.next
+        prev_node = self.head
+        while curr_node is not None:
+            if curr_node.value == val:
+                prev_node.next = curr_node.next
+                return
+            else:
+                prev_node = curr_node
+                curr_node = curr_node.next
+
+    def size(self):
+        """Return the length of the linked list."""
+        if self.head is not None:
+            size = 1
+            curr = self.head
+            while curr.next is not None:
+                size += 1
+                curr = curr.next
+            return size
+        return 0
 
     def display(self):
-        """Return a unicode string representing the Linked List as a tuple."""
-        return str(tuple(self._node_values()))
-
-    def __len__(self):
-        """Enable use of len() function."""
-        return self.size()
-
-    def _iterate_from(self, list_item):
-        while list_item is not None:
-            yield list_item
-            list_item = list_item.nxt
-
-    def _node_values(self):
-        """Helper function to return an iterable of node values."""
-        node_values = [node.value for node in self._iterate_from(self.head)]
-        return node_values
+        """Return the linked list as a printed string of a tuple literal."""
+        output = "("
+        current = self.head
+        while current is not None:
+            if type(current.value) == str:
+                output += "'" + current.value + "'"
+            else:
+                output += str(current.value)
+            if current.next is not None:
+                output += ', '
+            current = current.next
+        return output + ")"

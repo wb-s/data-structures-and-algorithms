@@ -1,4 +1,4 @@
-from dbl_linked_list import DblLinkedList
+from dbl_linked_list import DblLinked_List
 
 
 class Queue(object):
@@ -17,11 +17,11 @@ class Queue(object):
     """
 
     def __init__(self, maybe_an_iterable=None):
-        """Initialize Queue as a DblLinkedList-esque object."""
+        """Initialize Queue as a DblLinked_List-esque object."""
         try:
-            self._container = DblLinkedList(maybe_an_iterable[::-1])
+            self._container = DblLinked_List(maybe_an_iterable[::-1])
         except TypeError:
-            self._container = DblLinkedList(maybe_an_iterable)
+            self._container = DblLinked_List(maybe_an_iterable)
 
     def enqueue(self, value):
         """Add a new node with given value to the end (tail) of the queue."""

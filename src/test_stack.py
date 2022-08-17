@@ -36,7 +36,7 @@ def test_empty_new_node_object_has_none():
     from linked_list import Node
     new_node = Node()
     assert new_node.value is None
-    assert new_node.nxt is None
+    assert new_node.next is None
 
 
 def test_new_node_has_data():
@@ -52,7 +52,7 @@ def test_when_initialized_with_iterable_makes_nodes():
     from stack import Stack
     my_nodes = [1, 2, 3]
     new_stack = Stack(my_nodes)
-    assert len(new_stack._container) == 3
+    assert new_stack._container.size() == 3
 
 
 def test_that_pop_fails_when_called_on_empty_stack(new_empty_stack):
@@ -66,7 +66,7 @@ def test_that_pop_removes_the_head(stack_123):
     """Test that Stack.pop() removes the top element of the Stack"""
     from stack import Stack
     stack_123.pop()
-    assert len(stack_123._container) == 2
+    assert stack_123._container.size() == 2
 
 
 def test_that_push_adds_on_top_of_existing_stack(stack_123):

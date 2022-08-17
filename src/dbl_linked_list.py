@@ -26,7 +26,7 @@ class DblNode(object):
         self.prev = prev
 
 
-class DblLinkedList(object):
+class DblLinked_List(object):
 
     """Double Linked List (DLL) style Data Structure.
 

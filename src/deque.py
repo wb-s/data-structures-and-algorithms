@@ -1,6 +1,6 @@
 """This module contains the deque data structure."""
 
-from dbl_linked_list import DblLinkedList
+from dbl_linked_list import DblLinked_List
 
 
 class Deque(object):
@@ -19,7 +19,7 @@ class Deque(object):
 
     def __init__(self, maybe_an_iterable=None):
         """Initialize a deque data structure."""
-        self._container = DblLinkedList(maybe_an_iterable)
+        self._container = DblLinked_List(maybe_an_iterable)
 
     def append(self, val):
         """Append a node with given value to the tail."""
