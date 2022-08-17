@@ -74,7 +74,28 @@ Weighted Graph:
 - Module: weighted_graph.py
 - Tests: test_weighted_graph.py
 
-# Coverage
+# Testing and Coverage
+```
+========================================================================================= test session starts =========================================================================================
+platform darwin -- Python 3.10.2, pytest-7.1.2, pluggy-1.0.0
+rootdir: /Users/williamshields/data-structures-and-algorithms
+plugins: cov-3.0.0
+collected 349 items                                                                                                                                                                                   
+
+src/test_balanced_bst.py ..............................................                                                                                                                         [ 13%]
+src/test_bst.py ...................................                                                                                                                                             [ 23%]
+src/test_dbl_linked_list.py ..............................                                                                                                                                      [ 31%]
+src/test_deque.py .....................                                                                                                                                                         [ 37%]
+src/test_graph.py ............................                                                                                                                                                  [ 45%]
+src/test_insertion_sort.py ...........................                                                                                                                                          [ 53%]
+src/test_linked_list.py ...............                                                                                                                                                         [ 57%]
+src/test_merge_sort.py ............................                                                                                                                                             [ 65%]
+src/test_priorityq.py ..............                                                                                                                                                            [ 69%]
+src/test_queue.py ..............                                                                                                                                                                [ 73%]
+src/test_quick_sort.py ............................                                                                                                                                             [ 81%]
+src/test_stack.py .........                                                                                                                                                                     [ 84%]
+src/test_trie.py ...........                                                                                                                                                                    [ 87%]
+src/test_weighted_graph.py ...........................................                                                                                                                          [100%]
 
 ---------- coverage: platform darwin, python 3.10.2-final-0 ----------
 Name                          Stmts   Miss  Cover   Missing
@@ -112,3 +133,8 @@ src/trie.py                      68      6    91%   79, 85-86, 88-90
 src/weighted_graph.py           125     52    58%   32, 49, 51, 53, 59-65, 69-72, 76-78, 82-85, 89-97, 101-110, 114-129, 186
 -----------------------------------------------------------
 TOTAL                          3510    452    87%
+
+
+========================================================================================= 349 passed in 0.34s =========================================================================================
+
+```
